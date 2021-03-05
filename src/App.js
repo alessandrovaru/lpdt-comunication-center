@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.css";
+
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import onefoot from "./images/1foot.png";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <div className="container">
+        <div className="cuerpo">
+          <div className="card">
+            <img
+              src={onefoot}
+              className="img-fluid logo-one"
+              alt="Logo de One Football"
+            />
+            <h3>Conectar con el API</h3>
+            <form className="form-width">
+              <div className="form-group">
+                <label>Nombre</label>
+                <input className="form-control" type="text" name="firstName" />
+              </div>
+              <div className="form-group">
+                <label>Apellido</label>
+                <input className="form-control" type="text" name="lastName" />
+              </div>
+              <button className="btn btn-primary button">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 }
 
