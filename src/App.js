@@ -3,35 +3,24 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import onefoot from "./images/1foot.png";
+import Card from "./components/Card";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <div className="container">
+      <div className="dash">
+        <Navbar />
         <div className="cuerpo">
-          <div className="card">
-            <img
-              src={onefoot}
-              className="img-fluid logo-one"
-              alt="Logo de One Football"
-            />
-            <h3>Conectar con el API</h3>
-            <form className="form-width">
-              <div className="form-group">
-                <label>Nombre</label>
-                <input className="form-control" type="text" name="firstName" />
-              </div>
-              <div className="form-group">
-                <label>Apellido</label>
-                <input className="form-control" type="text" name="lastName" />
-              </div>
-              <button className="btn btn-primary button">Send</button>
-            </form>
+          <h2>Tablero</h2>
+          <div className="flex-lado">
+            <Card />
+            <div className="card">
+              <h3>Conectar con el API</h3>
+            </div>
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

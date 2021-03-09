@@ -1,35 +1,49 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
 
 body {
-  background-color: rgb(6, 7, 27);
+  background: linear-gradient(180deg, #f1f6f9 0%, #ebf3f8 100%);
   color: white;
   font-family: "Space Grotesk", sans-serif;
-  background-color: #053357;
 }
 .cuerpo {
   padding: 20px;
-  height: 85vh;
+  height: 95vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 86vw;
 }
 
-.card {
-  width: auto;
-  min-height: 300px;
-  color: #053357;
-  padding: 20px;
-  background-color: #fbf8f1;
-  border: 2px solid #cfcfcf;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  cursor: pointer;
+.cuerpo h2 {
+  margin: 20px 0 20px 0;
+  color: black;
+}
+.cuerpo .flex-lado {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.card:hover {
-  border: 2px solid #18a4e1;
+.dash {
+  display: flex;
+  flex-direction: row;
 }
+@media (max-width: 992px) {
+  .cuerpo {
+    height: 86vh;
+    width: auto;
+    overflow: scroll;
+  }
 
-.logo-one {
-  width: 400px;
-  margin-bottom: 20px;
+  .cuerpo .flex-lado {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: column;
+  }
+  .dash {
+    display: flex;
+    flex-direction: column;
+  }
 }
