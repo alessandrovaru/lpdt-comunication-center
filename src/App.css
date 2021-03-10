@@ -6,13 +6,13 @@ body {
   font-family: "Space Grotesk", sans-serif;
 }
 .cuerpo {
-  padding: 20px;
+  padding: 20px 20px 0 20px;
   height: 95vh;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  width: 86vw;
+  width: 90vw;
 }
 
 .cuerpo h2 {
@@ -23,6 +23,25 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
+}
+
+.cuerpo .flex-lado .left-side {
+  width: 50%;
+  overflow: auto;
+}
+.cuerpo .flex-lado .left-side h2 {
+  margin: 20px;
+}
+.cuerpo .flex-lado .left-side::-webkit-scrollbar {
+  display: none;
+}
+
+.cuerpo .flex-lado .right-side {
+  width: 50%;
+}
+.cuerpo .flex-lado .left-side h2 {
+  margin: 20px;
 }
 
 .dash {

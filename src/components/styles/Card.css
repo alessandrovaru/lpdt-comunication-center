@@ -1,5 +1,5 @@
 .card {
-  width: 700px;
+  width: auto;
   min-height: 300px;
   color: #053357;
   padding: 20px;
@@ -8,6 +8,10 @@
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   cursor: pointer;
   margin: 20px;
+}
+
+.card .bold {
+  font-weight: bold;
 }
 
 .card:hover {
