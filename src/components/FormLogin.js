@@ -7,6 +7,7 @@ const FormLogin = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [errores, setError] = useState(false);
 
   const handleChange = (e) => {
@@ -15,7 +16,6 @@ const FormLogin = () => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(form);
 
   const requestOptions = {
     method: "POST",
@@ -28,12 +28,20 @@ const FormLogin = () => {
     setLoading(true);
     setError(false);
 
-    const response = await fetch(
-      "https://network-api.onefootball.com/v1/login/",
-      requestOptions
-    );
-    const data = await response.json();
-    console.log(data);
+    try {
+      const response = await fetch(
+        "https://network-api.onefootball.com/v1/login/",
+        requestOptions
+      );
+      const data = await response.json();
+      setLoading(false);
+      setIsLoaded({ tkn: data.access_token });
+      if (!response.ok) throw Error(data.message);
+      console.log(data);
+    } catch (error) {
+      setError({ error: true, msg: error.message });
+      console.log(error);
+    }
   };
 
   return (
@@ -44,16 +52,18 @@ const FormLogin = () => {
         className="form-width"
       >
         <div className="form-group">
-          <label>Correo</label>
+          <label>Correol.ortega@lapizarradeldt.com</label>
           <input className="form-control" type="email" name="login" />
         </div>
         <div className="form-group">
-          <label>Contraseña</label>
+          <label>ContraseñaVenezuela3233@</label>
           <input className="form-control" type="password" name="password" />
         </div>
         <button type="submit" className="btn btn-primary button">
           Send
         </button>
+        {loading && <p>Cargando</p>}
+        {errores && <p>eror: {errores.msg}</p>}
       </form>
     </>
   );
