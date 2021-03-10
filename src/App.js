@@ -5,9 +5,11 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LogCard from "./components/LogCard";
 import { useState } from "react";
+import NoCodeCard from "./components/NoCodeCard";
 
 function App() {
   const [token, setToken] = useState(false);
+  const [api, setApi] = useState({});
   const [form, setForm] = useState({
     login: "",
     password: "",
@@ -37,27 +39,36 @@ function App() {
                 setToken={setToken}
                 token={token}
               />
-              <div className="card">
-                <h3>Conectar con el NoCodeAPI</h3>
-              </div>
-              <div className="card">
-                <h3>Conectar con el API</h3>
-              </div>
+              {token && (
+                <>
+                  <NoCodeCard api={api} setApi={setApi} />
+                  <div className="card">
+                    <h3>Conectar con el API</h3>
+                  </div>
+                </>
+              )}
             </div>
             <div className="right-side">
-              <h2>Resultado</h2>
-              <div className="card">
-                {token && (
-                  <>
+              {token && (
+                <>
+                  <h2>Resultado</h2>
+                  <div className="card">
                     <h3>El Token es:</h3>
+                    <hr />
                     <p>
                       El token que nos ha generado el API de OneFootbal es el
                       siguiente: <span className="bold">{token.token}</span>.
                       Esto, nos servirá por una semana
                     </p>
-                  </>
-                )}
-              </div>
+                    {api && (
+                      <>
+                        <h3>Notas:</h3>
+                        <hr />
+                      </>
+                    )}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
