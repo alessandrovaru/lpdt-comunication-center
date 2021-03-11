@@ -9,7 +9,8 @@ import NoCodeCard from "./components/NoCodeCard";
 
 function App() {
   const [token, setToken] = useState(false);
-  const [api, setApi] = useState({});
+  const [data, setData] = useState(false);
+  const [api, setApi] = useState(false);
   const [form, setForm] = useState({
     login: "",
     password: "",
@@ -25,6 +26,14 @@ function App() {
       [e.target.name]: e.target.value,
     });
   };
+
+  const fetchC = async () => {
+    const response = await fetch(api.api);
+    const dataResponse = await response.json();
+    setData(dataResponse.items);
+    console.log(data);
+  };
+
   return (
     <>
       <div className="dash">
@@ -32,7 +41,7 @@ function App() {
         <div className="cuerpo">
           <div className="flex-lado">
             <div className="left-side">
-              <h2>Tablero</h2>
+              <h2>Tablero de roderick</h2>
               <LogCard
                 requestOptions={requestOptions}
                 handleChange={handleChange}
@@ -64,6 +73,24 @@ function App() {
                       <>
                         <h3>Notas:</h3>
                         <hr />
+                        <p>Este es el link generado por NoCodeAPI: {api.api}</p>
+                        {data && (
+                          <>
+                            <div className="notas-container">
+                              {data.map((datos) => (
+                                <div className="nota-card" key={datos._id}>
+                                  <img
+                                    src={datos["imagen-simple"]}
+                                    alt="foto de-la-nota"
+                                  />
+                                  <h3>{datos.name}</h3>
+                                </div>
+                              ))}
+                            </div>
+                          </>
+                        )}
+
+                        <button onClick={fetchC}>Fetch</button>
                       </>
                     )}
                   </div>

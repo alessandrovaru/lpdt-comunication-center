@@ -40,13 +40,47 @@ body {
 .cuerpo .flex-lado .right-side {
   width: 50%;
 }
-.cuerpo .flex-lado .left-side h2 {
+.cuerpo .flex-lado .right-side h2 {
   margin: 20px;
 }
 
 .dash {
   display: flex;
   flex-direction: row;
+}
+.notas-container {
+  display: flex;
+  overflow-x: scroll;
+  height: auto;
+  display: grid;
+  grid-auto-flow: column;
+  margin-bottom: 20px;
+}
+.notas-container::-webkit-scrollbar {
+  height: 15px;
+}
+
+.notas-container::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+/* Handle */
+.notas-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.notas-container::-webkit-scrollbar-thumb:hover {
+  background: rgb(20, 7, 77);
+}
+.notas-container .nota-card {
+  color: #ffffff;
+  padding: 20px;
+  background-color: #14274e;
+  border: 2px solid #cfcfcf;
+  box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+  cursor: pointer;
+  margin: 20px;
+  min-height: 200px;
+  width: 354px;
 }
 @media (max-width: 992px) {
   .cuerpo {

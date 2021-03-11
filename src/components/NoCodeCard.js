@@ -1,4 +1,4 @@
-const NoCodeCard = ({ api, setApi }) => {
+const NoCodeCard = ({ setApi }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const valueURL = document.getElementById("apiURL").value;
