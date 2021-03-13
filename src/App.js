@@ -41,7 +41,7 @@ function App() {
         <div className="cuerpo">
           <div className="flex-lado">
             <div className="left-side">
-              <h2>Tablero de roderick</h2>
+              <h2>Tablero</h2>
               <LogCard
                 requestOptions={requestOptions}
                 handleChange={handleChange}
@@ -80,7 +80,7 @@ function App() {
                               {data.map((datos) => (
                                 <div className="nota-card" key={datos._id}>
                                   <img
-                                    src={datos["imagen-simple"]}
+                                    src={datos.imgprueba}
                                     alt="foto de-la-nota"
                                   />
                                   <h3>{datos.name}</h3>
