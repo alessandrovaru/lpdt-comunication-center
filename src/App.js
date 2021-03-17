@@ -80,7 +80,11 @@ function App() {
                               {data.map((datos) => (
                                 <div className="nota-card" key={datos._id}>
                                   <img
-                                    src={datos.imgprueba}
+                                    src={
+                                      datos["imagen-simple"]
+                                        ? datos["imagen-simple"].url
+                                        : JSON.stringify(datos["imagen-simple"])
+                                    }
                                     alt="foto de-la-nota"
                                   />
                                   <h3>{datos.name}</h3>
