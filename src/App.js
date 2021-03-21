@@ -6,20 +6,29 @@ import Footer from "./components/Footer";
 import LogCard from "./components/LogCard";
 import { useState } from "react";
 import NoCodeCard from "./components/NoCodeCard";
+import FetchCard from "./components/FetchCard";
+import SendCard from "./components/SendCard";
 
 function App() {
   const [token, setToken] = useState(false);
+
   const [data, setData] = useState(false);
+
   const [api, setApi] = useState(false);
+
   const [form, setForm] = useState({
     login: "",
     password: "",
   });
+
+  const [send, setSend] = useState(false);
+
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(form),
   };
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -30,6 +39,12 @@ function App() {
   const fetchC = async () => {
     const response = await fetch(api.api);
     const dataResponse = await response.json();
+    if (response.ok) {
+      console.log("worked");
+      setSend(true);
+    } else {
+      throw Error(dataResponse.message);
+    }
     setData(dataResponse.items);
     console.log(data);
   };
@@ -51,9 +66,7 @@ function App() {
               {token && (
                 <>
                   <NoCodeCard api={api} setApi={setApi} />
-                  <div className="card">
-                    <h3>Conectar con el API</h3>
-                  </div>
+                  {send && <SendCard />}
                 </>
               )}
             </div>
@@ -61,43 +74,12 @@ function App() {
               {token && (
                 <>
                   <h2>Resultado</h2>
-                  <div className="card">
-                    <h3>El Token es:</h3>
-                    <hr />
-                    <p>
-                      El token que nos ha generado el API de OneFootbal es el
-                      siguiente: <span className="bold">{token.token}</span>.
-                      Esto, nos servirá por una semana
-                    </p>
-                    {api && (
-                      <>
-                        <h3>Notas:</h3>
-                        <hr />
-                        <p>Este es el link generado por NoCodeAPI: {api.api}</p>
-                        {data && (
-                          <>
-                            <div className="notas-container">
-                              {data.map((datos) => (
-                                <div className="nota-card" key={datos._id}>
-                                  <img
-                                    src={
-                                      datos["imagen-simple"]
-                                        ? datos["imagen-simple"].url
-                                        : JSON.stringify(datos["imagen-simple"])
-                                    }
-                                    alt="foto de-la-nota"
-                                  />
-                                  <h3>{datos.name}</h3>
-                                </div>
-                              ))}
-                            </div>
-                          </>
-                        )}
-
-                        <button onClick={fetchC}>Fetch</button>
-                      </>
-                    )}
-                  </div>
+                  <FetchCard
+                    token={token}
+                    api={api}
+                    data={data}
+                    fetchC={fetchC}
+                  />
                 </>
               )}
             </div>

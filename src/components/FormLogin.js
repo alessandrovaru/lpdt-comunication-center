@@ -23,7 +23,6 @@ const FormLogin = ({ requestOptions, handleChange, setToken }) => {
       } else {
         throw Error(data.message);
       }
-      console.log(data);
     } catch (error) {
       setError({ error: true, msg: error.message });
       console.log(error);

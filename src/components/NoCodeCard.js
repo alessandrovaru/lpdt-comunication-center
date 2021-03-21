@@ -7,6 +7,7 @@ const NoCodeCard = ({ setApi }) => {
       api: valueURL,
     });
   };
+
   return (
     <>
       <div className="card">
