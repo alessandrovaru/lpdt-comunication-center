@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-
-const FormLogin = ({ requestOptions, handleChange, setToken }) => {
-  const [loading, setLoading] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [errores, setError] = useState(false);
-
+const FormLogin = ({
+  requestOptions,
+  handleChange,
+  setToken,
+  setLoading,
+  setIsLoaded,
+  isLoaded,
+  setError,
+  loading,
+  errores,
+}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -32,7 +36,6 @@ const FormLogin = ({ requestOptions, handleChange, setToken }) => {
   if (isLoaded && errores === false) {
     const logCard = document.getElementById("log-card");
     logCard.style.border = "2px solid green";
-    console.log(logCard);
   } else if (errores) {
     const logCard = document.getElementById("log-card");
     logCard.style.border = "2px solid red";

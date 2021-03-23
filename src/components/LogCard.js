@@ -1,7 +1,17 @@
 import FormLogin from "./FormLogin";
 import "./styles/Card.css";
 
-const LogCard = ({ requestOptions, handleChange, setToken }) => {
+const LogCard = ({
+  requestOptions,
+  handleChange,
+  setToken,
+  setLoading,
+  setIsLoaded,
+  setError,
+  loading,
+  isLoaded,
+  errores,
+}) => {
   return (
     <>
       <div id="log-card" className="card">
@@ -10,6 +20,12 @@ const LogCard = ({ requestOptions, handleChange, setToken }) => {
           requestOptions={requestOptions}
           handleChange={handleChange}
           setToken={setToken}
+          setLoading={setLoading}
+          setIsLoaded={setIsLoaded}
+          setError={setError}
+          loading={loading}
+          isLoaded={isLoaded}
+          errores={errores}
         />
       </div>
     </>

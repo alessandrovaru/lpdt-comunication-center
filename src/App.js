@@ -16,12 +16,18 @@ function App() {
 
   const [api, setApi] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const [errores, setError] = useState(false);
+
+  const [send, setSend] = useState(false);
+
   const [form, setForm] = useState({
     login: "",
     password: "",
   });
-
-  const [send, setSend] = useState(false);
 
   const requestOptions = {
     method: "POST",
@@ -36,17 +42,9 @@ function App() {
     });
   };
 
-  const fetchC = async () => {
-    const response = await fetch(api.api);
-    const dataResponse = await response.json();
-    if (response.ok) {
-      console.log("worked");
-      setSend(true);
-    } else {
-      throw Error(dataResponse.message);
-    }
-    setData(dataResponse.items);
-    console.log(data);
+  const sendD = async () => {
+    const datos = data;
+    console.log(datos);
   };
 
   return (
@@ -62,11 +60,17 @@ function App() {
                 handleChange={handleChange}
                 setToken={setToken}
                 token={token}
+                setLoading={setLoading}
+                setIsLoaded={setIsLoaded}
+                setError={setError}
+                loading={loading}
+                isLoaded={isLoaded}
+                errores={errores}
               />
               {token && (
                 <>
                   <NoCodeCard api={api} setApi={setApi} />
-                  {send && <SendCard />}
+                  {send && <SendCard data={data} sendD={sendD} token={token} />}
                 </>
               )}
             </div>
@@ -78,7 +82,14 @@ function App() {
                     token={token}
                     api={api}
                     data={data}
-                    fetchC={fetchC}
+                    setSend={setSend}
+                    setData={setData}
+                    setLoading={setLoading}
+                    setIsLoaded={setIsLoaded}
+                    setError={setError}
+                    loading={loading}
+                    isLoaded={isLoaded}
+                    errores={errores}
                   />
                 </>
               )}
