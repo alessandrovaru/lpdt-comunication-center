@@ -16,7 +16,7 @@ const NoCodeCard = ({ setApi }) => {
         <form onSubmit={handleSubmit} className="form-width">
           <div className="form-group">
             <label>
-              https://v1.nocodeapi.com/alessandrovaru/webflow/OUPdqnoYfgMNPlYm
+              https://v1.nocodeapi.com/alessandrovaru/webflow/eTCtqMwpTwAiPOkj
             </label>
             <input id="apiURL" type="text" className="form-control" />
           </div>

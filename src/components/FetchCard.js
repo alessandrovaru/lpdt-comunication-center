@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const FetchCard = ({
   data,
@@ -13,6 +13,7 @@ const FetchCard = ({
   setSend,
   setData,
 }) => {
+  const [articleExists, setArticleExists] = useState(false);
   useEffect(() => {
     setError(false);
     setIsLoaded(false);
@@ -24,24 +25,75 @@ const FetchCard = ({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${token.token}`,
+        Authorization: `Bearer ${token.token}`,
       },
-      body: {
+      body: JSON.stringify({
         external_id: datos._id,
         source_url: `https://www.lapizarradeldt.com/articulos/${datos.slug}`,
         language: "es",
         published: datos["created-on"],
-        modified: "2010-01-02T15:04:05Z",
-        content: datos.content,
+        modified: datos["updated-on"],
+        content: datos.contenido,
         title: datos.name,
         image_url: datos["imagen-simple"].url,
+        image_width: 800,
+        image_height: 369,
         draft: true,
-      },
+      }),
     };
+    const response = await fetch(
+      "https://network-api.onefootball.com/v1/posts/",
+      requestOptions
+    );
+    const data = await response.json();
+    console.log(requestOptions);
+    console.log(data);
+
     console.log(requestOptions);
   };
 
-  const fetchC = async (e) => {
+  const getOneArticle = async (id) => {
+    const headers = {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token.token}`,
+    };
+
+    const response = await fetch(
+      ` https://network-api.onefootball.com/v1/posts/?external_id=${id}`,
+      { headers }
+    );
+    const data = await response.json();
+
+    if (JSON.stringify(data) === '{"posts":[]}') {
+      console.log("no existe");
+      setArticleExists(false);
+    } else {
+      setArticleExists({ id: data.posts[0].id });
+      console.log(articleExists.id);
+    }
+  };
+
+  const deleteOneArticle = async (id) => {
+    await getOneArticle(id);
+    if (articleExists.id) {
+      const requestOptions = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.token}`,
+        },
+      };
+
+      const response = await fetch(
+        `https://network-api.onefootball.com/v1/posts/${articleExists.id}`,
+        requestOptions
+      );
+      const data = await response.json();
+      console.log(data);
+    }
+  };
+
+  const fetchC = async () => {
     setLoading(true);
     console.log(loading);
     try {
@@ -99,6 +151,12 @@ const FetchCard = ({
                       <h3>{datos.name}</h3>
                       <button onClick={() => sendOneArticle(datos)}>
                         Enviar
+                      </button>
+                      <button onClick={() => getOneArticle(datos._id)}>
+                        Existe?
+                      </button>
+                      <button onClick={() => deleteOneArticle(datos._id)}>
+                        Borrar
                       </button>
                       {/* <p>{datos.contenido}</p> */}
                     </div>
