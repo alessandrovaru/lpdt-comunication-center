@@ -63,13 +63,17 @@ const FetchCard = ({
       { headers }
     );
     const data = await response.json();
+    console.log(data);
 
     if (JSON.stringify(data) === '{"posts":[]}') {
       console.log("no existe");
       setArticleExists(false);
     } else {
-      setArticleExists({ id: data.posts[0].id });
-      console.log(articleExists.id);
+      setArticleExists({
+        id: data.posts[0].id,
+        external_id: data.posts[0].external_id,
+      });
+      console.log("Si existe");
     }
   };
 
@@ -122,18 +126,18 @@ const FetchCard = ({
   return (
     <>
       <div id="fetch-card" className="card">
-        <h3>El Token es:</h3>
+        {/* <h3>El Token es:</h3>
         <hr />
         <p>
           El token que nos ha generado el API de OneFootbal es el siguiente:{" "}
           <span className="bold">{token.token}</span>. Esto, nos servirá por una
           semana
-        </p>
+        </p> */}
         {api && (
           <>
             <h3>Notas:</h3>
             <hr />
-            <p>Este es el link generado por NoCodeAPI: {api.api}</p>
+            {/* <p>Este es el link generado por NoCodeAPI: {api.api}</p> */}
             {data && (
               <>
                 <div className="notas-container">
@@ -149,15 +153,33 @@ const FetchCard = ({
                         alt="foto de-la-nota"
                       />
                       <h3>{datos.name}</h3>
-                      <button onClick={() => sendOneArticle(datos)}>
-                        Enviar
-                      </button>
+                      <p>chequea si existe</p>
+                      {articleExists && (
+                        <>
+                          {articleExists.external_id === datos._id ? (
+                            <>
+                              <p>Si existe</p>
+                              <button onClick={() => sendOneArticle(datos)}>
+                                Enviar
+                              </button>
+                              <button
+                                onClick={() => deleteOneArticle(datos._id)}
+                              >
+                                Borrar
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <p>no existe</p>
+                            </>
+                          )}
+                        </>
+                      )}
+
                       <button onClick={() => getOneArticle(datos._id)}>
                         Existe?
                       </button>
-                      <button onClick={() => deleteOneArticle(datos._id)}>
-                        Borrar
-                      </button>
+
                       {/* <p>{datos.contenido}</p> */}
                     </div>
                   ))}
