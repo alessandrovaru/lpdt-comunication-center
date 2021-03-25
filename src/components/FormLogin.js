@@ -49,11 +49,11 @@ const FormLogin = ({
         className="form-width"
       >
         <div className="form-group">
-          <label>Correol.ortega@lapizarradeldt.com</label>
+          <label>Correo</label>
           <input className="form-control" type="email" name="login" />
         </div>
         <div className="form-group">
-          <label>ContraseñaVenezuela3233@</label>
+          <label>Contraseña</label>
           <input className="form-control" type="password" name="password" />
         </div>
         <button type="submit" className="btn btn-primary button">

@@ -7,7 +7,6 @@ import LogCard from "./components/LogCard";
 import { useState } from "react";
 import NoCodeCard from "./components/NoCodeCard";
 import FetchCard from "./components/FetchCard";
-import SendCard from "./components/SendCard";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -22,12 +21,7 @@ function App() {
 
   const [errores, setError] = useState(false);
 
-  const [send, setSend] = useState(false);
-
-  const [form, setForm] = useState({
-    login: "",
-    password: "",
-  });
+  const [form, setForm] = useState(false);
 
   const requestOptions = {
     method: "POST",
@@ -36,15 +30,11 @@ function App() {
   };
 
   const handleChange = (e) => {
+    setForm(false);
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const sendD = async () => {
-    const datos = data;
-    console.log(datos);
   };
 
   return (
@@ -67,22 +57,24 @@ function App() {
                 isLoaded={isLoaded}
                 errores={errores}
               />
+            </div>
+            <div className="right-side">
+              <h2>Elige el api</h2>
               {token && (
                 <>
                   <NoCodeCard api={api} setApi={setApi} />
-                  {send && <SendCard data={data} sendD={sendD} token={token} />}
                 </>
               )}
             </div>
-            <div className="right-side">
+          </div>
+          <div className="flex-lado">
+            <div className="down-side">
               {token && (
                 <>
-                  <h2>Resultado</h2>
                   <FetchCard
                     token={token}
                     api={api}
                     data={data}
-                    setSend={setSend}
                     setData={setData}
                     setLoading={setLoading}
                     setIsLoaded={setIsLoaded}
@@ -90,6 +82,8 @@ function App() {
                     loading={loading}
                     isLoaded={isLoaded}
                     errores={errores}
+                    handleChange={handleChange}
+                    form={form}
                   />
                 </>
               )}

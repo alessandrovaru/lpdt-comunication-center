@@ -44,6 +44,10 @@ body {
   margin: 20px;
 }
 
+.cuerpo .flex-lado .down-side h2 {
+  margin: 20px;
+}
+
 .dash {
   display: flex;
   flex-direction: row;
@@ -81,7 +85,23 @@ body {
   margin: 20px;
   min-height: 200px;
   width: 354px;
+  border-radius: 15px;
 }
+.down-side {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+}
+
+.search-wrapper {
+  display: flex;
+}
+.search-wrapper .left-side {
+  width: 50%;
+}
+
 @media (max-width: 992px) {
   .cuerpo {
     height: 86vh;

@@ -10,16 +10,24 @@ const FetchCard = ({
   loading,
   isLoaded,
   errores,
-  setSend,
   setData,
+  handleChange,
+  form,
 }) => {
   const [articleExists, setArticleExists] = useState(false);
+  const [borrado, setBorrado] = useState(false);
+  const [notExists, setNotExists] = useState(false);
+  const [slugState, setSlugState] = useState(false);
+  const [buscado, setBuscado] = useState(false);
+  const [sent, setSend] = useState(false);
   useEffect(() => {
     setError(false);
     setIsLoaded(false);
   });
 
   const sendOneArticle = async (datos) => {
+    setBorrado(false);
+
     console.log(datos.name);
     const requestOptions = {
       method: "POST",
@@ -46,13 +54,20 @@ const FetchCard = ({
       requestOptions
     );
     const data = await response.json();
-    console.log(requestOptions);
     console.log(data);
-
+    // setArticleExists({
+    //   id: data.posts[0].id,
+    //   external_id: datos.posts[0].external_id,
+    // });
+    setNotExists(false);
+    setSend(true);
+    await getOneArticle(datos._id);
     console.log(requestOptions);
   };
 
   const getOneArticle = async (id) => {
+    setBorrado(false);
+    setNotExists(false);
     const headers = {
       "Content-Type": "application/json",
       authorization: `Bearer ${token.token}`,
@@ -68,44 +83,60 @@ const FetchCard = ({
     if (JSON.stringify(data) === '{"posts":[]}') {
       console.log("no existe");
       setArticleExists(false);
+      setNotExists(true);
     } else {
       setArticleExists({
         id: data.posts[0].id,
         external_id: data.posts[0].external_id,
       });
+      setNotExists(false);
       console.log("Si existe");
     }
+    setBuscado(true);
+    console.log(notExists);
   };
 
   const deleteOneArticle = async (id) => {
     await getOneArticle(id);
-    if (articleExists.id) {
-      const requestOptions = {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token.token}`,
-        },
-      };
 
-      const response = await fetch(
-        `https://network-api.onefootball.com/v1/posts/${articleExists.id}`,
-        requestOptions
-      );
-      const data = await response.json();
-      console.log(data);
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${token.token}`,
+      },
+    };
+
+    const response = await fetch(
+      `https://network-api.onefootball.com/v1/posts/${articleExists.id}`,
+      requestOptions
+    );
+    const data = await response.text();
+    if (response.ok) {
+      setBorrado(true);
+      setNotExists(true);
+      setArticleExists(false);
+    } else {
+      setBorrado(false);
+      setNotExists(false);
+      setArticleExists(true);
     }
+
+    console.log(data);
   };
 
-  const fetchC = async () => {
+  const fetchC = async (ss) => {
     setLoading(true);
-    console.log(loading);
+    setNotExists(false);
+    setArticleExists(true);
+    setBuscado(false);
+
     try {
       const response = await fetch(api.api);
       const dataResponse = await response.json();
       if (response.ok) {
         console.log("worked");
-        setSend(true);
         setLoading(false);
       } else {
         throw Error(dataResponse.message);
@@ -116,6 +147,13 @@ const FetchCard = ({
       setLoading(false);
       console.log(error);
     }
+    let slugCutted = form.articleUrl.slice(41);
+    setSlugState(slugCutted);
+
+    console.log(slugState);
+    console.log(`funciono ${ss}`);
+    console.log(notExists, "no");
+    console.log(articleExists);
   };
 
   if (isLoaded && errores === false) {
@@ -137,62 +175,104 @@ const FetchCard = ({
           <>
             <h3>Notas:</h3>
             <hr />
-            {/* <p>Este es el link generado por NoCodeAPI: {api.api}</p> */}
-            {data && (
-              <>
-                <div className="notas-container">
-                  {data.map((datos) => (
-                    <div className="nota-card" key={datos._id}>
-                      <img
-                        src={
-                          datos["imagen-simple"]
-                            ? datos["imagen-simple"].url
-                            : JSON.stringify(datos["imagen-simple"])
-                        }
-                        className="img-fluid"
-                        alt="foto de-la-nota"
-                      />
-                      <h3>{datos.name}</h3>
-                      <p>chequea si existe</p>
-                      {articleExists && (
-                        <>
-                          {articleExists.external_id === datos._id ? (
+            <div className="search-wrapper">
+              <div className="left-side">
+                <form onChange={handleChange}>
+                  <div className="form-group">
+                    <label>Agrega la url</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="articleUrl"
+                    />
+                  </div>
+                </form>
+                <button
+                  onClick={() => fetchC(form.articleUrl)}
+                  className="btn btn-primary button"
+                >
+                  Buscar
+                </button>
+              </div>
+
+              {data && (
+                <>
+                  <div className="notas-container">
+                    {data
+                      .filter((data) => data.slug === slugState)
+                      .map((datos) => (
+                        <div className="nota-card" key={datos._id}>
+                          <img
+                            src={
+                              datos["imagen-simple"]
+                                ? datos["imagen-simple"].url
+                                : JSON.stringify(datos["imagen-simple"])
+                            }
+                            className="img-fluid"
+                            alt="foto de-la-nota"
+                          />
+                          <h3>{datos.name}</h3>
+                          {articleExists ? (
                             <>
                               <p>Si existe</p>
-                              <button onClick={() => sendOneArticle(datos)}>
-                                Enviar
-                              </button>
-                              <button
-                                onClick={() => deleteOneArticle(datos._id)}
-                              >
-                                Borrar
-                              </button>
+                              {articleExists.external_id === datos._id ? (
+                                <>
+                                  {borrado ? (
+                                    <></>
+                                  ) : (
+                                    <>
+                                      <button
+                                        className="btn btn-primary button"
+                                        onClick={() =>
+                                          deleteOneArticle(datos._id)
+                                        }
+                                      >
+                                        Borrar
+                                      </button>
+                                    </>
+                                  )}
+                                </>
+                              ) : (
+                                <></>
+                              )}
                             </>
                           ) : (
                             <>
-                              <p>no existe</p>
+                              {notExists === true && (
+                                <>
+                                  <p>no existe</p>
+                                  <button
+                                    className="btn btn-primary button"
+                                    onClick={() => sendOneArticle(datos)}
+                                  >
+                                    Enviarlo
+                                  </button>
+                                </>
+                              )}
                             </>
                           )}
-                        </>
-                      )}
+                          {buscado ? (
+                            <></>
+                          ) : (
+                            <>
+                              <button
+                                className="btn btn-primary button"
+                                onClick={() => getOneArticle(datos._id)}
+                              >
+                                Existe en OneFootbal?
+                              </button>
+                            </>
+                          )}
 
-                      <button onClick={() => getOneArticle(datos._id)}>
-                        Existe?
-                      </button>
+                          {/* <p>{datos.contenido}</p> */}
+                        </div>
+                      ))}
+                  </div>
+                </>
+              )}
+            </div>
+            {/* <p>Este es el link generado por NoCodeAPI: {api.api}</p> */}
 
-                      {/* <p>{datos.contenido}</p> */}
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-            <button
-              onClick={fetchC}
-              type="submit"
-              className="btn btn-primary button"
-            >
-              Buscar
-            </button>
             {loading && <p>Cargando</p>}
 
             {errores && <p>Error: {errores.msg}</p>}
