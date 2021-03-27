@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/lpdt-comunication-center/static/css/main.1f88818b.chunk.css",
-    "main.js": "/lpdt-comunication-center/static/js/main.1ec8c73b.chunk.js",
-    "main.js.map": "/lpdt-comunication-center/static/js/main.1ec8c73b.chunk.js.map",
+    "main.css": "/lpdt-comunication-center/static/css/main.968a955d.chunk.css",
+    "main.js": "/lpdt-comunication-center/static/js/main.7760791c.chunk.js",
+    "main.js.map": "/lpdt-comunication-center/static/js/main.7760791c.chunk.js.map",
     "runtime-main.js": "/lpdt-comunication-center/static/js/runtime-main.739ff63d.js",
     "runtime-main.js.map": "/lpdt-comunication-center/static/js/runtime-main.739ff63d.js.map",
     "static/css/2.658248ec.chunk.css": "/lpdt-comunication-center/static/css/2.658248ec.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.744f7ab8.chunk.js.map": "/lpdt-comunication-center/static/js/3.744f7ab8.chunk.js.map",
     "index.html": "/lpdt-comunication-center/index.html",
     "static/css/2.658248ec.chunk.css.map": "/lpdt-comunication-center/static/css/2.658248ec.chunk.css.map",
-    "static/css/main.1f88818b.chunk.css.map": "/lpdt-comunication-center/static/css/main.1f88818b.chunk.css.map",
+    "static/css/main.968a955d.chunk.css.map": "/lpdt-comunication-center/static/css/main.968a955d.chunk.css.map",
     "static/js/2.1be4f0f0.chunk.js.LICENSE.txt": "/lpdt-comunication-center/static/js/2.1be4f0f0.chunk.js.LICENSE.txt",
     "static/media/isoblanco.850c0f31.png": "/lpdt-comunication-center/static/media/isoblanco.850c0f31.png"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.739ff63d.js",
     "static/css/2.658248ec.chunk.css",
     "static/js/2.1be4f0f0.chunk.js",
-    "static/css/main.1f88818b.chunk.css",
-    "static/js/main.1ec8c73b.chunk.js"
+    "static/css/main.968a955d.chunk.css",
+    "static/js/main.7760791c.chunk.js"
   ]
 }
