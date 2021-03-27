@@ -20,6 +20,7 @@ const FetchCard = ({
   const [slugState, setSlugState] = useState(false);
   const [buscado, setBuscado] = useState(false);
   const [sent, setSend] = useState(false);
+
   useEffect(() => {
     setError(false);
     setIsLoaded(false);
@@ -27,7 +28,6 @@ const FetchCard = ({
 
   const sendOneArticle = async (datos) => {
     setBorrado(false);
-
     console.log(datos.name);
     const requestOptions = {
       method: "POST",
@@ -55,12 +55,9 @@ const FetchCard = ({
     );
     const data = await response.json();
     console.log(data);
-    // setArticleExists({
-    //   id: data.posts[0].id,
-    //   external_id: datos.posts[0].external_id,
-    // });
     setNotExists(false);
     setSend(true);
+    console.log(sent);
     await getOneArticle(datos._id);
     console.log(requestOptions);
   };
@@ -126,7 +123,9 @@ const FetchCard = ({
     console.log(data);
   };
 
-  const fetchC = async (ss) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(e);
     setLoading(true);
     setNotExists(false);
     setArticleExists(true);
@@ -151,7 +150,6 @@ const FetchCard = ({
     setSlugState(slugCutted);
 
     console.log(slugState);
-    console.log(`funciono ${ss}`);
     console.log(notExists, "no");
     console.log(articleExists);
   };
@@ -164,13 +162,11 @@ const FetchCard = ({
   return (
     <>
       <div id="fetch-card" className="card">
-        {/* <h3>El Token es:</h3>
-        <hr />
         <p>
           El token que nos ha generado el API de OneFootbal es el siguiente:{" "}
           <span className="bold">{token.token}</span>. Esto, nos servirá por una
           semana
-        </p> */}
+        </p>
         {api && (
           <>
             <h3>Notas:</h3>
@@ -186,13 +182,14 @@ const FetchCard = ({
                       name="articleUrl"
                     />
                   </div>
+                  <button
+                    onClick={handleSubmit}
+                    type="submit"
+                    className="btn btn-primary button"
+                  >
+                    Buscar
+                  </button>
                 </form>
-                <button
-                  onClick={() => fetchC(form.articleUrl)}
-                  className="btn btn-primary button"
-                >
-                  Buscar
-                </button>
               </div>
 
               {data && (

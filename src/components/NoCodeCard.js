@@ -12,12 +12,10 @@ const NoCodeCard = ({ setApi }) => {
     <>
       <div className="card">
         <h3>Elegir el API</h3>
-        <p>Esta lista te permite conectar con NoCodeAPI</p>
+        <p>https://v1.nocodeapi.com/alessandrovaru/webflow/eTCtqMwpTwAiPOkj</p>
         <form onSubmit={handleSubmit} className="form-width">
           <div className="form-group">
-            <label>
-              https://v1.nocodeapi.com/alessandrovaru/webflow/eTCtqMwpTwAiPOkj
-            </label>
+            <label>Link del API</label>
             <input id="apiURL" type="text" className="form-control" />
           </div>
           <button type="submit" className="btn btn-primary button">

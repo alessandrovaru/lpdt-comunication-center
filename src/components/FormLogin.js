@@ -11,6 +11,7 @@ const FormLogin = ({
 }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(e);
     setLoading(true);
     setError(false);
 

@@ -59,9 +59,9 @@ function App() {
               />
             </div>
             <div className="right-side">
-              <h2>Elige el api</h2>
               {token && (
                 <>
+                  <h2>Elige el api</h2>
                   <NoCodeCard api={api} setApi={setApi} />
                 </>
               )}

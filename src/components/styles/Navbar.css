@@ -102,4 +102,13 @@
   .nav:hover .logo-one-container img {
     width: 20px;
   }
+  .nav .nav-log-container {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav img {
+    width: 30px;
+  }
 }

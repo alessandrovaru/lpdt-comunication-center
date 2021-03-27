@@ -23,12 +23,10 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
 }
 
 .cuerpo .flex-lado .left-side {
   width: 50%;
-  overflow: auto;
 }
 .cuerpo .flex-lado .left-side h2 {
   margin: 20px;
@@ -118,5 +116,17 @@ body {
   .dash {
     display: flex;
     flex-direction: column;
+  }
+  .cuerpo .flex-lado .left-side {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .cuerpo .flex-lado .right-side {
+    width: 100%;
+  }
+  .search-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
