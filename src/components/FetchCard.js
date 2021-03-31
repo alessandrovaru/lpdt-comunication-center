@@ -33,8 +33,7 @@ const FetchCard = ({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://onefootball.com",
-        Vary: "Origin",
+        mode: "no-cors",
         Authorization: `Bearer ${token.token}`,
       },
       body: JSON.stringify({
@@ -69,8 +68,7 @@ const FetchCard = ({
     setNotExists(false);
     const headers = {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "https://onefootball.com",
-      Vary: "Origin",
+      mode: "no-cors",
       authorization: `Bearer ${token.token}`,
     };
 
@@ -104,8 +102,7 @@ const FetchCard = ({
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://onefootball.com",
-        Vary: "Origin",
+        mode: "no-cors",
         Authorization: `Bearer ${token.token}`,
       },
     };
