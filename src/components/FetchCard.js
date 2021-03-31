@@ -49,10 +49,7 @@ const FetchCard = ({
         draft: true,
       }),
     };
-    const response = await fetch(
-      "https://network-api.onefootball.com/v1/posts/",
-      requestOptions
-    );
+    const response = await fetch("/v1/posts/", requestOptions);
     const data = await response.json();
     console.log(data);
     setNotExists(false);
@@ -70,10 +67,7 @@ const FetchCard = ({
       authorization: `Bearer ${token.token}`,
     };
 
-    const response = await fetch(
-      `https://network-api.onefootball.com/v1/posts/?external_id=${id}`,
-      { headers }
-    );
+    const response = await fetch(`/v1/posts/?external_id=${id}`, { headers });
     const data = await response.json();
     console.log(data);
 
@@ -105,7 +99,7 @@ const FetchCard = ({
     };
 
     const response = await fetch(
-      `https://network-api.onefootball.com/v1/posts/${articleExists.id}`,
+      `/v1/posts/${articleExists.id}`,
       requestOptions
     );
     const data = await response.text();

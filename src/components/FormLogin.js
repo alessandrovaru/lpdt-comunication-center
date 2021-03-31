@@ -16,10 +16,7 @@ const FormLogin = ({
     setError(false);
 
     try {
-      const response = await fetch(
-        "https://network-api.onefootball.com/v1/login/",
-        requestOptions
-      );
+      const response = await fetch("/v1/login/", requestOptions);
       const data = await response.json();
       setLoading(false);
       setIsLoaded({ tkn: data.access_token });
@@ -50,7 +47,7 @@ const FormLogin = ({
         className="form-width"
       >
         <div className="form-group">
-          <label>Correo</label>
+          <label>Correos</label>
           <input className="form-control" type="email" name="login" />
         </div>
         <div className="form-group">
