@@ -34,7 +34,7 @@ const FetchCard = ({
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "https://onefootball.com",
-        Vary: Origin,
+        Vary: "Origin",
         Authorization: `Bearer ${token.token}`,
       },
       body: JSON.stringify({
@@ -70,7 +70,7 @@ const FetchCard = ({
     const headers = {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "https://onefootball.com",
-      Vary: Origin,
+      Vary: "Origin",
       authorization: `Bearer ${token.token}`,
     };
 
@@ -105,7 +105,7 @@ const FetchCard = ({
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "https://onefootball.com",
-        Vary: Origin,
+        Vary: "Origin",
         Authorization: `Bearer ${token.token}`,
       },
     };

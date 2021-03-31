@@ -28,7 +28,7 @@ function App() {
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "https://onefootball.com",
-      Vary: Origin,
+      Vary: "Origin",
     },
     body: JSON.stringify(form),
   };
