@@ -46,7 +46,7 @@ const FetchCard = ({
         image_url: datos["imagen-simple"].url,
         image_width: 800,
         image_height: 369,
-        draft: true,
+        draft: false,
       }),
     };
     const response = await fetch(
