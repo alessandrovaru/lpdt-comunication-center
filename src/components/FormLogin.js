@@ -16,7 +16,10 @@ const FormLogin = ({
     setError(false);
 
     try {
-      const response = await fetch("/v1/login/", requestOptions);
+      const response = await fetch(
+        "https://shielded-fjord-34653.herokuapp.com/https://network-api.onefootball.com/v1/login/",
+        requestOptions
+      );
       const data = await response.json();
       setLoading(false);
       setIsLoaded({ tkn: data.access_token });

@@ -37,7 +37,7 @@ const FetchCard = ({
       },
       body: JSON.stringify({
         external_id: datos._id,
-        source_url: `https://www.lapizarradeldt.com/articulos/${datos.slug}`,
+        source_url: `https://shielded-fjord-34653.herokuapp.com/https://www.lapizarradeldt.com/articulos/${datos.slug}`,
         language: "es",
         published: datos["created-on"],
         modified: datos["updated-on"],
@@ -49,7 +49,10 @@ const FetchCard = ({
         draft: true,
       }),
     };
-    const response = await fetch("/v1/posts/", requestOptions);
+    const response = await fetch(
+      "https://shielded-fjord-34653.herokuapp.com/https://network-api.onefootball.com/v1/posts/",
+      requestOptions
+    );
     const data = await response.json();
     console.log(data);
     setNotExists(false);
@@ -67,7 +70,10 @@ const FetchCard = ({
       authorization: `Bearer ${token.token}`,
     };
 
-    const response = await fetch(`/v1/posts/?external_id=${id}`, { headers });
+    const response = await fetch(
+      `https://shielded-fjord-34653.herokuapp.com/https://network-api.onefootball.com/v1/posts/?external_id=${id}`,
+      { headers }
+    );
     const data = await response.json();
     console.log(data);
 
@@ -99,7 +105,7 @@ const FetchCard = ({
     };
 
     const response = await fetch(
-      `/v1/posts/${articleExists.id}`,
+      `https://shielded-fjord-34653.herokuapp.com/https://network-api.onefootball.com/v1/posts/${articleExists.id}`,
       requestOptions
     );
     const data = await response.text();
