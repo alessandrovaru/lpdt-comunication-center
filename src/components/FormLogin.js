@@ -17,7 +17,7 @@ const FormLogin = ({
 
     try {
       const response = await fetch(
-        "https://cors-anywhere.herokuapp.com/https://network-api.onefootball.com/v1/login/",
+        "https://network-api.onefootball.com/v1/login/",
         requestOptions
       );
       const data = await response.json();

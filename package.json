@@ -1,5 +1,6 @@
 {
   "homepage": "https://alessandrovaru.github.io/lpdt-comunication-center",
+  "proxy": "https:/onefootbal.com",
   "name": "lpdt-comunication-center",
   "version": "0.1.0",
   "private": true,

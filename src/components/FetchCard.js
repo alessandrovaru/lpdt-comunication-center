@@ -37,7 +37,7 @@ const FetchCard = ({
       },
       body: JSON.stringify({
         external_id: datos._id,
-        source_url: `https://cors-anywhere.herokuapp.com/https://www.lapizarradeldt.com/articulos/${datos.slug}`,
+        source_url: `https://www.lapizarradeldt.com/articulos/${datos.slug}`,
         language: "es",
         published: datos["created-on"],
         modified: datos["updated-on"],
@@ -50,7 +50,7 @@ const FetchCard = ({
       }),
     };
     const response = await fetch(
-      "https://cors-anywhere.herokuapp.com/https://network-api.onefootball.com/v1/posts/",
+      "https://network-api.onefootball.com/v1/posts/",
       requestOptions
     );
     const data = await response.json();
@@ -71,7 +71,7 @@ const FetchCard = ({
     };
 
     const response = await fetch(
-      ` https://cors-anywhere.herokuapp.com/https://network-api.onefootball.com/v1/posts/?external_id=${id}`,
+      `https://network-api.onefootball.com/v1/posts/?external_id=${id}`,
       { headers }
     );
     const data = await response.json();
@@ -105,7 +105,7 @@ const FetchCard = ({
     };
 
     const response = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://network-api.onefootball.com/v1/posts/${articleExists.id}`,
+      `https://network-api.onefootball.com/v1/posts/${articleExists.id}`,
       requestOptions
     );
     const data = await response.text();
