@@ -50,7 +50,7 @@ const FormLogin = ({
         className="form-width"
       >
         <div className="form-group">
-          <label>Correo</label>
+          <label>Correoo</label>
           <input className="form-control" type="email" name="login" />
         </div>
         <div className="form-group">
