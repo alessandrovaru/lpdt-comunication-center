@@ -1,6 +1,5 @@
 {
   "homepage": "https://alessandrovaru.github.io/lpdt-comunication-center",
-  "proxy": "https://onefootball.com",
   "name": "lpdt-comunication-center",
   "version": "0.1.0",
   "private": true,
@@ -22,6 +21,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
+  "proxy": "https://onefootball.com",
   "eslintConfig": {
     "extends": [
       "react-app",
