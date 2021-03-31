@@ -106,7 +106,7 @@ const FetchCard = ({
     };
 
     const response = await fetch(
-      `https://network-api.onefootball.com/v1/posts/${articleExists.id}`,
+      `http://network-api.onefootball.com/v1/posts/${articleExists.id}`,
       requestOptions
     );
     const data = await response.text();

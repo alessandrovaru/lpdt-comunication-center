@@ -17,7 +17,7 @@ const FormLogin = ({
 
     try {
       const response = await fetch(
-        "https://network-api.onefootball.com/v1/login/",
+        "http://network-api.onefootball.com/v1/login/",
         requestOptions
       );
       const data = await response.json();
