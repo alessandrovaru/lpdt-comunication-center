@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/lpdt-comunication-center/static/css/main.968a955d.chunk.css",
-    "main.js": "/lpdt-comunication-center/static/js/main.e551a19b.chunk.js",
-    "main.js.map": "/lpdt-comunication-center/static/js/main.e551a19b.chunk.js.map",
+    "main.js": "/lpdt-comunication-center/static/js/main.bfd9bb4d.chunk.js",
+    "main.js.map": "/lpdt-comunication-center/static/js/main.bfd9bb4d.chunk.js.map",
     "runtime-main.js": "/lpdt-comunication-center/static/js/runtime-main.739ff63d.js",
     "runtime-main.js.map": "/lpdt-comunication-center/static/js/runtime-main.739ff63d.js.map",
     "static/css/2.658248ec.chunk.css": "/lpdt-comunication-center/static/css/2.658248ec.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.658248ec.chunk.css",
     "static/js/2.1be4f0f0.chunk.js",
     "static/css/main.968a955d.chunk.css",
-    "static/js/main.e551a19b.chunk.js"
+    "static/js/main.bfd9bb4d.chunk.js"
   ]
 }
