@@ -41,7 +41,7 @@ const FetchCard = ({
         language: "es",
         published: datos["created-on"],
         modified: datos["updated-on"],
-        content: datos.contenido,
+        content: `<p style="font-style: italic;">El siguiente artículo, podría contener contenido multimedia, como videos, que no se estén mostrando dentro de OneFootball. Si quieres leer el artículo completo podrás encontrarlo <a href=https://www.lapizarradeldt.com/articulos/${datos.slug}>aquí.</a><p>${datos.contenido}`,
         title: datos.name,
         image_url: datos["imagen-simple"].url,
         image_width: 800,
@@ -210,9 +210,9 @@ const FetchCard = ({
                           <h3>{datos.name}</h3>
                           {articleExists ? (
                             <>
-                              <p>Si existe</p>
                               {articleExists.external_id === datos._id ? (
                                 <>
+                                  <p>Este artículo sí existe</p>
                                   {borrado ? (
                                     <></>
                                   ) : (
@@ -236,7 +236,7 @@ const FetchCard = ({
                             <>
                               {notExists === true && (
                                 <>
-                                  <p>no existe</p>
+                                  <p>Este artículo no existe</p>
                                   <button
                                     className="btn btn-primary button"
                                     onClick={() => sendOneArticle(datos)}
@@ -255,21 +255,18 @@ const FetchCard = ({
                                 className="btn btn-primary button"
                                 onClick={() => getOneArticle(datos._id)}
                               >
-                                Existe en OneFootbal?
+                                ¿Existe en OneFootbal?
                               </button>
                             </>
                           )}
-
-                          {/* <p>{datos.contenido}</p> */}
                         </div>
                       ))}
                   </div>
                 </>
               )}
             </div>
-            {/* <p>Este es el link generado por NoCodeAPI: {api.api}</p> */}
 
-            {loading && <p>Cargando</p>}
+            {loading && <p>Cargando...</p>}
 
             {errores && <p>Error: {errores.msg}</p>}
           </>
